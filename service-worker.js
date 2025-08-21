@@ -11,7 +11,7 @@
     { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
   ]
 }
-const CACHE_NAME = 'connect5-v2'; // bump version
+const CACHE_NAME = 'connect5-v3'; // bump version
 const ASSETS = [
   './',
   './index.html',
@@ -88,3 +88,4 @@ self.addEventListener('fetch', (e) => {
     );
   }
 });
+
