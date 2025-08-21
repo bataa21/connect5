@@ -34,7 +34,14 @@ const translations = {
     soundOff: 'Дуугүй',
     guaranteedDraw: 'Тэнцэх нь баталгаатай — Шинэ товчийг дарж дахин эхлүүлээрэй',
     likelyDraw: 'Тэнцэх магадлал өндөр — хүсвэл Шинэ товчийг дарж дахин эхлүүлж болно',
-    iosHint: 'iPhone дээр: Share → “Add to Home Screen”-г сонгоно уу.'
+    iosHint: 'iPhone дээр: Share → “Add to Home Screen”-г сонгоно уу.',
+    // add inside translations.mn and translations.en
+hintTitle: 'Connect 5 — Нүүр хуудас руу нэмэх',
+hintStep1: '1) Хуваалцах товчийг дарна',
+hintStep2: '2) “Нүүр хуудас руу нэмэх”-ийг сонгоно',
+hintFooter: 'iPhone дээр: Хуваалцах → “Нүүр хуудас руу нэмэх”.',
+gotIt: 'Ойлголоо'
+
   },
   en: {
     title: 'Connect 5',
@@ -55,7 +62,13 @@ const translations = {
     soundOff: 'Sound Off',
     guaranteedDraw: 'Draw is guaranteed — press New to restart',
     likelyDraw: 'Likely draw — you can stop and press New to restart',
-    iosHint: 'On iPhone: tap Share → “Add to Home Screen”.'
+    iosHint: 'On iPhone: tap Share → “Add to Home Screen”.',
+    hintTitle: 'Connect 5 — Add to Home Screen',
+hintStep1: '1) Tap Share',
+hintStep2: '2) Choose “Add to Home Screen”',
+hintFooter: 'On iPhone: tap Share, then “Add to Home Screen”.',
+gotIt: 'Got it'
+
   }
 };
 
@@ -246,8 +259,11 @@ document.addEventListener('DOMContentLoaded', () => {
       showBanner(msg, 'success');
       if (sym === 'X' && window.confetti) {
         confetti({ particleCount: 200, spread: 70, origin: { y: .6 }, zIndex: 9999 });
-        document.body.classList.add('win-effect');
-      }
+        document.body.classList.add('win-effect');}
+         // Notify PWA layer that a win happened
+  try { localStorage.setItem('connect5.lastWinTs', String(Date.now())); } catch {}
+  window.dispatchEvent(new CustomEvent('connect5:win', { detail: { winner: symbol } }));
+ 
     } else if (!forcedDrawNotified && isForcedDraw()) {
       // Strong “draw guaranteed”
       forcedDrawNotified = true;
