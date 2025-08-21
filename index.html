@@ -3,120 +3,109 @@
 <head>
   <meta charset="UTF-8" />
   <title>Connect 5 / 5-ыг холбо</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.webmanifest">
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.webmanifest" type="application/manifest+json">
   <meta name="theme-color" content="#4361ee">
 
-  <!-- Favicons (optional if you already have them) -->
+  <!-- Silence Chrome warning (apple-mobile-web-app-capable is deprecated there) -->
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
   <link rel="shortcut icon" href="icons/favicon.ico">
 
-  <!-- iOS installable & startup images -->
-  <meta name="mobile-web-app-capable" content="yes">
+  <!-- iOS: full-screen + icon + startup images -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Connect 5">
-  <link rel="apple-touch-icon" href="icons/icon-180.png">
-  <!-- Splash (portrait only shown) -->
-  <link rel="apple-touch-startup-image" href="splash/iphone-1290x2796.png" media="(device-width:430px) and (device-height:932px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait)">
-  <link rel="apple-touch-startup-image" href="splash/iphone-1179x2556.png" media="(device-width:393px) and (device-height:852px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait)">
-  <link rel="apple-touch-startup-image" href="splash/iphone-1170x2532.png" media="(device-width:390px) and (device-height:844px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait)">
-  <link rel="apple-touch-startup-image" href="splash/iphone-1125x2436.png" media="(device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait)">
-  <link rel="apple-touch-startup-image" href="splash/iphone-1242x2688.png" media="(device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait)">
-  <link rel="apple-touch-startup-image" href="splash/iphone-828x1792.png"  media="(device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
-  <link rel="apple-touch-startup-image" href="splash/iphone-750x1334.png"  media="(device-width:375px) and (device-height:667px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
-  <link rel="apple-touch-startup-image" href="splash/iphone-640x1136.png"  media="(device-width:320px) and (device-height:568px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
-  <link rel="apple-touch-startup-image" href="splash/ipad-2048x2732.png"   media="(device-width:1024px) and (device-height:1366px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
-  <link rel="apple-touch-startup-image" href="splash/ipad-1668x2388.png"   media="(device-width:834px) and (device-height:1194px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
-  <link rel="apple-touch-startup-image" href="splash/ipad-1620x2160.png"   media="(device-width:810px) and (device-height:1080px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
-  <link rel="apple-touch-startup-image" href="splash/ipad-1536x2048.png"   media="(device-width:768px) and (device-height:1024px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
 
+  <!-- iOS splash (portrait) -->
+  <link rel="apple-touch-startup-image" href="splash/iphone-1290x2796.png"
+        media="(device-width:430px) and (device-height:932px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait)">
+  <link rel="apple-touch-startup-image" href="splash/iphone-1179x2556.png"
+        media="(device-width:393px) and (device-height:852px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait)">
+  <link rel="apple-touch-startup-image" href="splash/iphone-1170x2532.png"
+        media="(device-width:390px) and (device-height:844px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait)">
+  <link rel="apple-touch-startup-image" href="splash/iphone-1125x2436.png"
+        media="(device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait)">
+  <link rel="apple-touch-startup-image" href="splash/iphone-1242x2688.png"
+        media="(device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait)">
+  <link rel="apple-touch-startup-image" href="splash/iphone-828x1792.png"
+        media="(device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
+  <link rel="apple-touch-startup-image" href="splash/iphone-750x1334.png"
+        media="(device-width:375px) and (device-height:667px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
+  <link rel="apple-touch-startup-image" href="splash/iphone-640x1136.png"
+        media="(device-width:320px) and (device-height:568px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
+  <link rel="apple-touch-startup-image" href="splash/ipad-2048x2732.png"
+        media="(device-width:1024px) and (device-height:1366px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
+  <link rel="apple-touch-startup-image" href="splash/ipad-1668x2388.png"
+        media="(device-width:834px) and (device-height:1194px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
+  <link rel="apple-touch-startup-image" href="splash/ipad-1620x2160.png"
+        media="(device-width:810px) and (device-height:1080px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
+  <link rel="apple-touch-startup-image" href="splash/ipad-1536x2048.png"
+        media="(device-width:768px) and (device-height:1024px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
+
+  <!-- Confetti (safe to load deferred) -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 
   <style>
-    :root{
-      --primary:#4361ee; --secondary:#3a0ca3; --accent:#f72585;
-      --dark:#212529; --light:#fff; --success:#4cc9f0; --danger:#f72585;
-      --radius:12px; --shadow:0 4px 20px rgba(0,0,0,.08);
-    }
+    /* ——— your CSS exactly as you shared ——— */
+    :root{--primary:#4361ee;--secondary:#3a0ca3;--accent:#f72585;--dark:#212529;--light:#fff;--success:#4cc9f0;--danger:#f72585;--radius:12px;--shadow:0 4px 20px rgba(0,0,0,.08)}
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{overflow-x:hidden;overflow-y:auto;background:linear-gradient(135deg,#f5f7fa 0%,#e4e8f0 100%)}
     body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--dark);min-height:100vh;display:flex;flex-direction:column}
     .app{width:100%;max-width:980px;margin:0 auto;padding:12px 14px 20px;display:grid;grid-template-rows:auto auto 1fr auto;gap:12px;min-height:100svh}
-    .topbar{display:flex;align-items:center;justify-content:space-between;gap:8px}
-    .title{font-size:clamp(1.4rem,3.5vw,2rem);font-weight:800;color:#3a0ca3;text-align:center;flex:1}
-    .top-actions{display:flex;gap:8px;align-items:center}
-    .select{appearance:none;background:#fff;border:1px solid #dee2e6;border-radius:10px;padding:8px 12px;font-weight:700}
-    .btn{border:none;border-radius:10px;padding:9px 12px;font-weight:800;cursor:pointer;background:var(--primary);color:#fff;transition:.2s}
+    @supports(padding:max(0px)){.app{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}}
+    .topbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px}
+    .topbar-left{min-width:0}
+    .title{font-size:clamp(1.4rem,3.5vw,2rem);font-weight:800;color:var(--secondary);text-align:center;justify-self:center}
+    .top-actions{justify-self:end;display:flex;gap:8px;align-items:center}
+    .select{appearance:none;background:#fff;border:1px solid #dee2e6;border-radius:10px;padding:8px 12px;font-weight:600}
+    .btn{border:none;border-radius:10px;padding:9px 12px;font-weight:700;cursor:pointer;background:var(--primary);color:#fff;transition:.2s}
     .btn:hover{background:var(--secondary);transform:translateY(-1px)}
     .btn.alt{background:#4cc9f0}
     .btn.ghost{background:#111827}
     .btn:disabled{background:#adb5bd;transform:none;cursor:not-allowed}
-
     .toolbar{background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
     .segmented{display:flex;border:1px solid #dee2e6;border-radius:10px;overflow:hidden;background:#fff}
-    .segmented .seg{padding:8px 12px;font-weight:800;cursor:pointer;border-right:1px solid #eee;background:#fff;color:#333;user-select:none}
+    .segmented .seg{padding:8px 12px;font-weight:700;cursor:pointer;border-right:1px solid #eee;user-select:none;background:#fff;color:#333}
     .segmented .seg:last-child{border-right:none}
     .segmented .seg.active{background:#eef2ff;color:#1d2cf3}
     .toolbar .group{display:flex;gap:8px;align-items:center}
     .toolbar .divider{width:1px;height:28px;background:#e9ecef}
-
     .board-wrap{background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:12px;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:flex-start;min-height:0}
     .notice{min-height:38px;display:flex;align-items:center;justify-content:center}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:1px solid;font-weight:900;line-height:1;box-shadow:0 1px 2px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.05);cursor:pointer;user-select:none}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:1px solid;font-weight:800;line-height:1;box-shadow:0 1px 2px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.05);opacity:1;transform:translateY(0);transition:opacity .18s,transform .18s}
     .pill--success{background:#ecfdf5;color:#065f46;border-color:#a7f3d0}
     .pill--warning{background:#fff7ed;color:#92400e;border-color:#fed7aa}
     .pill--info{background:#eef2ff;color:#1e40af;border-color:#c7d2fe}
-
-    .status{min-height:24px;text-align:center;color:#6c757d;font-style:italic;font-weight:700}
-    .board{display:grid;gap:3px;background:#e9ecef;border-radius:8px;padding:5px;width:min(92vw,520px);max-width:520px;aspect-ratio:1/1;grid-template-columns:repeat(10,minmax(0,1fr));grid-template-rows:repeat(10,minmax(0,1fr))}
-    .cell{aspect-ratio:1/1;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:clamp(1.2rem,2.7vw,1.9rem);border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,.05);cursor:pointer;user-select:none;touch-action:manipulation;transition:background-color .1s, box-shadow .1s}
+    .status{min-height:24px;text-align:center;color:#6c757d;font-style:italic;font-weight:600}
+    .board{display:grid;gap:3px;background:#e9ecef;border-radius:8px;padding:5px;width:clamp(280px,92svw,520px);max-width:520px;aspect-ratio:1/1;grid-template-columns:repeat(10,minmax(0,1fr));grid-template-rows:repeat(10,minmax(0,1fr));margin-inline:auto}
+    .cell{aspect-ratio:1/1;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:clamp(1.2rem,2.7vw,1.9rem);border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,.05);cursor:pointer;user-select:none;touch-action:manipulation;will-change:transform;transition:background-color .1s, box-shadow .1s}
     .cell:active{background:#f1f3f5;box-shadow:inset 0 2px 4px rgba(0,0,0,.1)}
-    @media (hover:hover){ .cell:hover{transform:scale(1.03)} }
+    @media(hover:hover){.cell:hover{transform:scale(1.03)}}
     .cell.x{color:var(--success)} .cell.o{color:var(--danger)}
     .cell.winning{background:rgba(255,215,0,.25);animation:pulse 1s infinite alternate}
     .cell-last-move{box-shadow:0 0 0 3px var(--accent)}
     @keyframes pulse{from{background:rgba(255,215,0,.2)} to{background:rgba(255,215,0,.4)}}
     @keyframes winPulse{0%{background-color:#f5f7fa}50%{background-color:#caffd1}100%{background-color:#f5f7fa}}
     .win-effect{animation:winPulse .6s ease-in-out 8}
-
-    #welcome-screen{position:fixed;inset:0;background:linear-gradient(135deg,#3a0ca3,#4361ee);display:none;align-items:center;justify-content:center;z-index:9999;color:#fff;padding:20px}
-    .welcome-box{text-align:center;background:rgba(255,255,255,.1);padding:28px;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,.3)}
-
-    /* Toasts */
     .toast-container{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);display:grid;gap:8px;z-index:99999;pointer-events:none}
-    .toast{pointer-events:auto;background:#111827;color:#fff;padding:10px 14px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.18);font-weight:800;font-size:.95rem;opacity:0;transform:translateY(8px);transition:opacity .18s, transform .18s}
+    .toast{pointer-events:auto;background:#111827;color:#fff;padding:10px 14px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.18);font-weight:700;font-size:.95rem;opacity:0;transform:translateY(8px);transition:opacity .18s,transform .18s}
     .toast.show{opacity:1;transform:translateY(0)}
-    .toast--success{background:#065f46}
-    .toast--warning{background:#92400e}
-    .toast--info{background:#1f2937}
-
-    /* Install Help modal */
-    .ih-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:99998}
-    .ih-card{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:99999;background:#fff;color:#111;width:min(92vw,420px);border-radius:16px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
-    .ih-card h3{margin:0 0 10px;font-size:1.15rem}
-    .ih-steps{margin:8px 0 16px 20px}
-    .ih-steps li{margin:6px 0}
-    .ih-close{appearance:none;border:none;border-radius:10px;padding:8px 12px;background:#111827;color:#fff;font-weight:800;cursor:pointer}
-
-    @media(min-width:992px){
-      html,body{overflow:hidden}
-      .app{height:100vh;min-height:100vh;grid-template-rows:auto auto 1fr auto;padding:12px 18px}
-      .board{width:min(62vmin,540px);max-width:60vh}
-      .title{font-size:1.8rem}
-    }
-    @media(max-width:360px){
-      .btn,.select,.segmented .seg{padding:7px 10px}
-      .title{font-size:1.2rem}
-    }
+    .toast--success{background:#065f46}.toast--warning{background:#92400e}.toast--info{background:#1f2937}
+    @media(min-width:992px){html,body{overflow:hidden}.app{height:100vh;min-height:100vh;grid-template-rows:auto auto 1fr auto;padding:12px 18px}.board{width:min(62vmin,540px);max-width:60vh}.title{font-size:1.8rem}}
+    @media(max-width:360px){.btn,.select,.segmented .seg{padding:7px 10px}.title{font-size:1.2rem}}
   </style>
 </head>
 <body>
   <!-- Welcome overlay -->
-  <div id="welcome-screen">
-    <div class="welcome-box">
+  <div id="welcome-screen" style="position:fixed;inset:0;background:linear-gradient(135deg,#3a0ca3,#4361ee);display:none;align-items:center;justify-content:center;z-index:9999;color:#fff;padding:20px">
+    <div class="welcome-box" style="text-align:center;background:rgba(255,255,255,.1);padding:28px;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,.3)">
       <h1 style="font-size:2rem;margin-bottom:10px;">Connect 5</h1>
       <h2 style="font-size:1.6rem;margin-bottom:12px;">5-ыг холбо</h2>
       <p style="opacity:.9;margin-bottom:16px;">Get five in a row to win!</p>
@@ -126,7 +115,7 @@
 
   <div class="app">
     <div class="topbar">
-      <div style="width:92px"></div>
+      <div class="topbar-left"></div>
       <div class="title" id="gameTitle">5-ыг холбо</div>
       <div class="top-actions">
         <button id="installBtn" class="btn ghost" style="display:none">📲 Install</button>
@@ -141,7 +130,7 @@
     <div class="toolbar">
       <div class="group">
         <div class="segmented" id="modeSegment">
-          <div class="seg" id="segFriend">👥 <span class="seg-text">Найз</span></div>
+          <div class="seg" id="segFriend">👥 <span class="seg-text">Friend</span></div>
           <div class="seg active" id="segAI">🤖 <span class="seg-text">AI</span></div>
         </div>
       </div>
@@ -168,416 +157,8 @@
     <div id="toastHost" class="toast-container" aria-live="polite" aria-atomic="true"></div>
   </div>
 
-  <script>
-    // Welcome overlay show/hide
-    window.hideWelcomeScreen = function(){ const w=document.getElementById('welcome-screen'); if(w) w.style.display='none'; };
-    window.addEventListener('load',()=>{ const w=document.getElementById('welcome-screen'); if(w) w.style.display='flex'; });
-
-    // PWA service worker (works on https: and http://localhost)
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
-      });
-    }
-
-    // Sounds
-    const SOUNDS={MOVE:'move-sound.mp3',WIN:'win-sound.mp3',DRAW:'draw-sound.mp3'};
-
-    // i18n
-    const translations={
-      mn:{
-        title:"5-ыг холбо",
-        vsFriend:"Найз",
-        vsComputer:"AI",
-        easy:"Хялбар", medium:"Дунд", hard:"Хэцүү",
-        reset:"Шинэ", aiFirst:"Ai эхлэх",
-        yourTurn:"Таны ээлж", aiThinking:"AI бодож байна...",
-        xWins:"X хожлоо! 🎉", oWins:"O хожлоо! 🎉", draw:"Тэнцлээ!",
-        playerTurn:"Тоглогч {{player}}-ийн ээлж",
-        soundOn:"Дуутай", soundOff:"Дуугүй",
-        guaranteedDraw:"Тэнцэх нь баталгаатай — Шинэ товчийг дарж дахин эхлүүлээрэй",
-        likelyDraw:"Тэнцэх магадлал өндөр — хүсвэл Шинэ товчийг дарж дахин эхлүүлж болно",
-        iosHint:"iPhone дээр: Хуваалцах → Нүүр хуудас руу нэмэх"
-      },
-      en:{
-        title:"Connect 5",
-        vsFriend:"Friend",
-        vsComputer:"AI",
-        easy:"Easy", medium:"Medium", hard:"Hard",
-        reset:"New", aiFirst:"AI Starts",
-        yourTurn:"Your turn", aiThinking:"AI is thinking...",
-        xWins:"X wins! 🎉", oWins:"O wins! 🎉", draw:"It's a draw!",
-        playerTurn:"Player {{player}}'s turn",
-        soundOn:"Sound On", soundOff:"Sound Off",
-        guaranteedDraw:"Draw is guaranteed — press New to restart",
-        likelyDraw:"Likely draw — you can stop and press New to restart",
-        iosHint:"On iPhone: Share → Add to Home Screen"
-      }
-    };
-
-    // Toast helper
-    function showToast(message, variant='info', ms=2400){
-      const host=document.getElementById('toastHost'); if(!host) return;
-      const el=document.createElement('div'); el.className=`toast toast--${variant}`; el.textContent=message;
-      host.appendChild(el); requestAnimationFrame(()=>el.classList.add('show'));
-      setTimeout(()=>{ el.classList.remove('show'); el.addEventListener('transitionend',()=>el.remove(),{once:true}); setTimeout(()=>el.remove(),400); }, ms);
-    }
-
-    // Clickable pill banner (opens install help on iOS)
-    function showBanner(msg, variant){
-      const b=document.getElementById('banner'); b.innerHTML=''; b.className='notice';
-      if(!msg) return;
-      const pill=document.createElement('div'); pill.className=`pill pill--${variant||'info'}`;
-      const iconMap={success:'✓',warning:'⏳',info:'ℹ︎'};
-      const icon=document.createElement('span'); icon.textContent=iconMap[variant]||iconMap.info;
-      const text=document.createElement('span'); text.textContent=msg;
-      pill.appendChild(icon); pill.appendChild(text);
-
-      // Accessible clickable pill
-      pill.setAttribute('role','button'); pill.setAttribute('tabindex','0'); pill.title='How to install';
-      pill.addEventListener('click', showInstallHelp);
-      pill.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' ') showInstallHelp(); });
-
-      b.appendChild(pill);
-    }
-
-    // Small modal with iOS steps
-    function showInstallHelp(){
-      const isiOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
-      if(!isiOS) return; // only useful for iOS
-
-      if(document.getElementById('install-help')) return;
-      const wrap=document.createElement('div');
-      wrap.id='install-help';
-      wrap.innerHTML=`
-        <div class="ih-backdrop"></div>
-        <div class="ih-card" role="dialog" aria-modal="true" aria-labelledby="ih-title">
-          <h3 id="ih-title">Add to Home Screen</h3>
-          <ol class="ih-steps">
-            <li>Tap the <b>Share</b> icon (square with ↑).</li>
-            <li>Choose <b>Add to Home Screen</b>.</li>
-            <li>Tap <b>Add</b>.</li>
-          </ol>
-          <button class="ih-close">Close</button>
-        </div>`;
-      document.body.appendChild(wrap);
-      const close=()=>wrap.remove();
-      wrap.querySelector('.ih-backdrop').addEventListener('click', close);
-      wrap.querySelector('.ih-close').addEventListener('click', close);
-      document.addEventListener('keydown', function esc(e){ if(e.key==='Escape'){ close(); document.removeEventListener('keydown', esc); }});
-    }
-
-    // Install button via beforeinstallprompt (Android/Desktop)
-    let deferredPrompt=null;
-    const installBtn=document.getElementById('installBtn');
-    window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); deferredPrompt=e; installBtn.style.display=''; });
-    installBtn?.addEventListener('click', async()=>{ if(!deferredPrompt) return; deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null; installBtn.style.display='none'; });
-    window.addEventListener('appinstalled',()=>{ showToast('Installed!','success',2200); installBtn.style.display='none'; });
-
-    document.addEventListener('DOMContentLoaded',()=>{
-      const SIZE=10, WIN=5;
-
-      // Precompute all 5-cells segments
-      const SEGMENTS = (() => {
-        const segs=[];
-        for(let y=0;y<SIZE;y++) for(let x=0;x<=SIZE-WIN;x++) segs.push(Array.from({length:WIN},(_,i)=>({x:x+i,y})));
-        for(let x=0;x<SIZE;x++) for(let y=0;y<=SIZE-WIN;y++) segs.push(Array.from({length:WIN},(_,i)=>({x,y:y+i})));
-        for(let y=0;y<=SIZE-WIN;y++) for(let x=0;x<=SIZE-WIN;x++) segs.push(Array.from({length:WIN},(_,i)=>({x:x+i,y:y+i})));
-        for(let y=WIN-1;y<SIZE;y++) for(let x=0;x<=SIZE-WIN;x++) segs.push(Array.from({length:WIN},(_,i)=>({x:x+i,y:y-i})));
-        return segs;
-      })();
-
-      // DOM
-      const boardEl=document.getElementById('board');
-      const thinkingEl=document.getElementById('thinking');
-      const resetBtn=document.getElementById('resetButton');
-      const diffSel=document.getElementById('difficulty');
-      const segFriend=document.getElementById('segFriend');
-      const segAI=document.getElementById('segAI');
-      const langSel=document.getElementById('languageSelect');
-      const titleEl=document.getElementById('gameTitle');
-      const soundBtn=document.getElementById('soundToggle');
-      const aiStartBtn=document.getElementById('alternateStartButton');
-
-      // State
-      let board=Array(SIZE).fill().map(()=>Array(SIZE).fill(''));
-      let current='X', gameOver=false, winCells=[], moveCount=0;
-      let mode='computer', botStartsNext=false;
-      let lang='mn', soundOn=true;
-      let forcedDrawNotified=false, likelyDrawNotified=false;
-
-      // i18n helpers
-      function t(key,params={}){ let s=translations[lang][key]; for(const[k,v] of Object.entries(params)) s=s.replace(`{{${k}}}`,v); return s; }
-      function updateTopTexts(){
-        titleEl.textContent=translations[lang].title;
-        segFriend.querySelector('.seg-text').textContent=translations[lang].vsFriend;
-        segAI.querySelector('.seg-text').textContent=translations[lang].vsComputer;
-        diffSel.querySelector('[value="easy"]').textContent=translations[lang].easy;
-        diffSel.querySelector('[value="medium"]').textContent=translations[lang].medium;
-        diffSel.querySelector('[value="hard"]').textContent=translations[lang].hard;
-        resetBtn.textContent=translations[lang].reset;
-        aiStartBtn.textContent=translations[lang].aiFirst;
-        soundBtn.textContent = soundOn ? '🔊' : '🔇';
-        soundBtn.title = soundOn ? translations[lang].soundOn : translations[lang].soundOff;
-        updateStatus();
-      }
-
-      // Sounds
-      function playSound(k){
-        if(!soundOn||!SOUNDS[k])return;
-        try{ const a=new Audio(SOUNDS[k]); a.volume=.3; a.play().catch(()=>{soundOn=false;updateTopTexts();}); }
-        catch{ soundOn=false; updateTopTexts(); }
-      }
-
-      // Board
-      function createBoard(){
-        board=Array(SIZE).fill().map(()=>Array(SIZE).fill(''));
-        boardEl.innerHTML=''; moveCount=0; gameOver=false; winCells=[];
-        thinkingEl.textContent=''; showBanner('',null);
-        forcedDrawNotified=false; likelyDrawNotified=false;
-
-        if(mode==='computer' && botStartsNext){ current='O'; botStartsNext=false; updateStatus(); setTimeout(makeAIMove,400); }
-        else current='X';
-
-        for(let y=0;y<SIZE;y++) for(let x=0;x<SIZE;x++){
-          const c=document.createElement('div'); c.className='cell'; c.dataset.x=x; c.dataset.y=y; c.addEventListener('click', onCell); boardEl.appendChild(c);
-        }
-        updateBoard(); updateStatus(); saveState();
-      }
-      function onCell(e){
-        if(gameOver) return;
-        if(mode==='computer' && current!=='X') return;
-        const x=+e.currentTarget.dataset.x, y=+e.currentTarget.dataset.y;
-        if(board[y][x]!=='') return;
-        makeMove(x,y,current);
-        if(!gameOver){ current=(current==='X')?'O':'X'; updateStatus(); if(mode==='computer'&&current==='O') setTimeout(makeAIMove,400); }
-      }
-      function updateBoard(){
-        for(let y=0;y<SIZE;y++) for(let x=0;x<SIZE;x++){
-          const el=boardEl.children[y*SIZE+x]; el.textContent=board[y][x]; el.className='cell';
-          if(board[y][x]==='X') el.classList.add('x'); if(board[y][x]==='O') el.classList.add('o');
-        }
-      }
-
-      function makeMove(x,y,sym){
-        board[y][x]=sym; moveCount++; updateBoard(); playSound('MOVE');
-        document.querySelectorAll('.cell-last-move').forEach(n=>n.classList.remove('cell-last-move'));
-        boardEl.children[y*SIZE+x]?.classList.add('cell-last-move');
-
-        if(checkWin(sym)){
-          highlightWins(); gameOver=true; thinkingEl.textContent=''; playSound('WIN');
-          const msg=(sym==='X')?translations[lang].xWins:translations[lang].oWins;
-          showToast(msg,'success',2600); showBanner(msg,'success');
-          if(sym==='X'){ confetti({particleCount:200,spread:70,origin:{y:.6},zIndex:9999}); document.body.classList.add('win-effect'); }
-        } else if (!forcedDrawNotified && isForcedDraw()) {
-          forcedDrawNotified=true; const msg=translations[lang].guaranteedDraw; showToast(msg,'warning',3200); showBanner(msg,'warning');
-        } else if (!forcedDrawNotified && isLikelyDraw()) {
-          if (!likelyDrawNotified){ likelyDrawNotified=true; const msg=translations[lang].likelyDraw; showToast(msg,'info',2600); showBanner(msg,'info'); }
-        } else if (!forcedDrawNotified && likelyDrawNotified && !isLikelyDraw()) {
-          likelyDrawNotified=false; showBanner('',null);
-        } else if (isFull()){
-          gameOver=true; thinkingEl.textContent=''; playSound('DRAW'); const msg=translations[lang].draw; showToast(msg,'info',2600); showBanner(msg,'info');
-        }
-        saveState();
-      }
-
-      function updateStatus(){
-        if(gameOver) return;
-        if(mode==='friend') thinkingEl.textContent=t('playerTurn',{player:current});
-        else thinkingEl.textContent=(current==='X')?translations[lang].yourTurn:translations[lang].aiThinking;
-      }
-      function isFull(){ return board.flat().every(c=>c!==''); }
-
-      function checkWin(sym){
-        winCells=[]; const dirs=[{dx:1,dy:0},{dx:0,dy:1},{dx:1,dy:1},{dx:1,dy:-1}];
-        for(let y=0;y<SIZE;y++) for(let x=0;x<SIZE;x++){
-          if(board[y][x]!==sym) continue;
-          for(const d of dirs){
-            let count=1, cells=[{x,y}];
-            for(let i=1;i<WIN;i++){ const nx=x+d.dx*i, ny=y+d.dy*i; if(nx<0||ny<0||nx>=SIZE||ny>=SIZE||board[ny][nx]!==sym) break; count++; cells.push({x:nx,y:ny}); }
-            for(let i=1;i<WIN;i++){ const nx=x-d.dx*i, ny=y-d.dy*i; if(nx<0||ny<0||nx>=SIZE||ny>=SIZE||board[ny][nx]!==sym) break; count++; cells.push({x:nx,y:ny}); }
-            if(count>=WIN){ winCells=cells.slice(0,WIN); return true; }
-          }
-        }
-        return false;
-      }
-      function highlightWins(){ document.querySelectorAll('.cell.winning').forEach(n=>n.classList.remove('winning')); winCells.forEach(({x,y})=>boardEl.children[y*SIZE+x]?.classList.add('winning')); }
-
-      // Draw prediction helpers
-      function emptyCount(){ let e=0; for(let y=0;y<SIZE;y++) for(let x=0;x<SIZE;x++) if(board[y][x]==='') e++; return e; }
-      function movesLeftFor(sym){ const E=emptyCount(); const xToMove=(current==='X'); if(sym==='X') return xToMove?Math.ceil(E/2):Math.floor(E/2); return xToMove?Math.floor(E/2):Math.ceil(E/2); }
-      function minEmptiesToWin(sym){
-        const opp=(sym==='X')?'O':'X'; let best=Infinity;
-        for(const seg of SEGMENTS){ let blocked=false, blanks=0; for(const {x,y} of seg){ const v=board[y][x]; if(v===opp){blocked=true;break;} if(v==='') blanks++; } if(!blocked) best=Math.min(best,blanks); }
-        return best;
-      }
-      function hasOpenFiveFor(sym){ const opp=(sym==='X')?'O':'X'; for(const seg of SEGMENTS){ let blocked=false; for(const {x,y} of seg){ if(board[y][x]===opp){blocked=true;break;} } if(!blocked) return true; } return false; }
-      function openSegmentsStats(sym){
-        const opp=(sym==='X')?'O':'X'; let countOpen=0,bestSymbols=0;
-        for(const seg of SEGMENTS){ let blocked=false,symCount=0; for(const {x,y} of seg){ const v=board[y][x]; if(v===opp){blocked=true;break;} if(v===sym) symCount++; } if(!blocked){countOpen++; if(symCount>bestSymbols) bestSymbols=symCount;} }
-        return {countOpen,bestSymbols};
-      }
-      function isForcedDraw(){
-        const noOpenX=!hasOpenFiveFor('X'), noOpenO=!hasOpenFiveFor('O');
-        const needX=minEmptiesToWin('X'), needO=minEmptiesToWin('O');
-        const leftX=movesLeftFor('X'), leftO=movesLeftFor('O');
-        const budgetFailX=needX>leftX, budgetFailO=needO>leftO;
-        return ((noOpenX||budgetFailX)&&(noOpenO||budgetFailO));
-      }
-      function isLikelyDraw(){
-        if(isForcedDraw()) return false;
-        const E=emptyCount();
-        const needX=minEmptiesToWin('X'), needO=minEmptiesToWin('O');
-        const leftX=movesLeftFor('X'), leftO=movesLeftFor('O');
-        const softBudget=(needX>leftX+1)&&(needO>leftO+1);
-        const sx=openSegmentsStats('X'), so=openSegmentsStats('O');
-        const lowThreats=(sx.bestSymbols<=2 && so.bestSymbols<=2 && E<=12);
-        const fewOpen=(sx.countOpen<=2 && so.countOpen<=2 && E<=14);
-        return softBudget || lowThreats || fewOpen;
-      }
-
-      // ===== AI (strong) =====
-      function makeAIMove(){
-        if(gameOver) return;
-        const d=diffSel.value; let m=null;
-        if(d==='easy') m=getEasy(); else if(d==='medium') m=getMedium(); else m=getHardMove();
-        if(m){ setTimeout(()=>{ makeMove(m.x,m.y,'O'); if(!gameOver){ current='X'; updateStatus(); } },350); }
-      }
-      function getEasy(){
-        const w=findWinMove('O'); if(w) return w;
-        const b=findWinMove('X'); if(b) return b;
-        const xs=[]; for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++) if(board[y][x]==='X') xs.push({x,y});
-        if(xs.length===0 && board[5]?.[5]==='') return {x:5,y:5};
-        const adj=[],st=[-1,0,1];
-        xs.forEach(m=>st.forEach(dy=>st.forEach(dx=>{
-          if(dx===0&&dy===0)return; const nx=m.x+dx, ny=m.y+dy;
-          if(nx>=0&&ny>=0&&nx<SIZE&&ny<SIZE && board[ny][nx]==='' && !adj.some(c=>c.x===nx&&c.y===ny)) adj.push({x:nx,y:ny});
-        })));
-        if(adj.length) return adj[Math.floor(Math.random()*adj.length)];
-        for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++) if(board[y][x]==='') return {x,y};
-        return null;
-      }
-      function getMedium(){ return findWinMove('O')||findWinMove('X')||getEasy(); }
-      function getHardMove(){
-        const w=findWinMove('O'); if(w) return w;
-        const b=findWinMove('X'); if(b) return b;
-        const f=createFork(); if(f) return f;
-        const d=blockPatterns(); if(d) return d;
-        const c=takeCenter(); if(c) return c;
-        return strategic();
-      }
-      function findWinMove(sym){
-        for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++){
-          if(board[y][x]!=='') continue; board[y][x]=sym;
-          const ok=checkWin(sym); board[y][x]=''; if(ok) return {x,y};
-        } return null;
-      }
-      function createFork(){
-        const dirs=[{dx:1,dy:0},{dx:0,dy:1},{dx:1,dy:1},{dx:1,dy:-1}],TH=2;
-        for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++){
-          if(board[y][x]!=='') continue; board[y][x]='O';
-          let paths=0; for(const d of dirs){
-            let pot=0;
-            for(let i=1;i<WIN;i++){ const nx=x+d.dx*i, ny=y+d.dy*i; if(nx<0||ny<0||nx>=SIZE||ny>=SIZE) break; if(board[ny][nx]==='O') pot++; else if(board[ny][nx]!=='') break; }
-            for(let i=1;i<WIN;i++){ const nx=x-d.dx*i, ny=y-d.dy*i; if(nx<0||ny<0||nx>=SIZE||ny>=SIZE) break; if(board[ny][nx]==='O') pot++; else if(board[ny][nx]!=='') break; }
-            if(pot>=WIN-1) paths++;
-          }
-          board[y][x]=''; if(paths>=TH) return {x,y};
-        } return null;
-      }
-      function blockPatterns(){
-        const patterns=[{pattern:['X','X','X','X',''],priority:1000},{pattern:['','X','X','X','X'],priority:1000},{pattern:['X','X','X','','X'],priority:900},{pattern:['X','X','','X','X'],priority:900},{pattern:['X','','X','X','X'],priority:900},{pattern:['','X','X','X',''],priority:800},{pattern:['','','X','X','X'],priority:700},{pattern:['X','X','X','',''],priority:700},{pattern:['','X','X','',''],priority:600},{pattern:['','','X','X',''],priority:600}];
-        let best=null,hi=0; const dirs=[{dx:1,dy:0},{dx:0,dy:1},{dx:1,dy:1},{dx:1,dy:-1}];
-        for(const {pattern,priority} of patterns){ if(priority<hi) continue;
-          for(const d of dirs){ for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++){
-            let ok=true,empties=[]; for(let i=0;i<pattern.length;i++){
-              const nx=x+d.dx*i, ny=y+d.dy*i; if(nx<0||ny<0||nx>=SIZE||ny>=SIZE){ok=false;break;}
-              if(pattern[i]===''){ if(board[ny][nx]!==''){ok=false;break;} empties.push({x:nx,y:ny}); }
-              else if(board[ny][nx]!==pattern[i]){ok=false;break;}
-            }
-            if(ok && empties.length){ if(priority>hi){hi=priority; best=empties[0];} }
-          }}
-        } return best;
-      }
-      function takeCenter(){
-        const pad=2,c=[]; for(let y=pad;y<SIZE-pad;y++)for(let x=pad;x<SIZE-pad;x++) if(board[y][x]==='') c.push({x,y});
-        if(!c.length) return null; let best=null,score=-1;
-        for(const p of c){ const s=scoreCenter(p.x,p.y); if(s>score){score=s;best=p;} } return best;
-      }
-      function scoreCenter(x,y){
-        let s=0; for(let dy=-2;dy<=2;dy++) for(let dx=-2;dx<=2;dx++){
-          const nx=x+dx, ny=y+dy; if(nx<0||ny<0||nx>=SIZE||ny>=SIZE) continue;
-          if(board[ny][nx]==='O') s+=3; if(board[ny][nx]==='X') s+=1;
-        }
-        const dirs=[{dx:1,dy:0},{dx:0,dy:1},{dx:1,dy:1},{dx:1,dy:-1}];
-        for(const d of dirs){
-          let pot=0;
-          for(let i=1;i<WIN;i++){ const nx=x+d.dx*i, ny=y+d.dy*i; if(nx<0||ny<0||nx>=SIZE||ny>=SIZE) break; if(board[ny][nx]==='') pot++; else if(board[ny][nx]==='O') pot+=2; else break; }
-          for(let i=1;i<WIN;i++){ const nx=x-d.dx*i, ny=y-d.dy*i; if(nx<0||ny<0||nx>=SIZE||ny>=SIZE) break; if(board[ny][nx]==='') pot++; else if(board[ny][nx]==='O') pot+=2; else break; }
-          s+=pot;
-        } return s;
-      }
-      function strategic(){
-        let best=null,score=-Infinity;
-        for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++){
-          if(board[y][x]!=='') continue;
-          board[y][x]='O'; const off=evalSym('O');
-          board[y][x]='X'; const def=evalSym('X');
-          board[y][x]=''; const sc=off+def;
-          if(sc>score){score=sc; best={x,y};}
-        } return best;
-      }
-      function evalSym(sym){
-        let s=0; const dirs=[{dx:1,dy:0},{dx:0,dy:1},{dx:1,dy:1},{dx:1,dy:-1}];
-        for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++)for(const d of dirs){
-          let cnt=0,open=0; let nx=x+d.dx,ny=y+d.dy;
-          while(nx>=0&&ny>=0&&nx<SIZE&&ny<SIZE&&(board[ny][nx]===sym||board[ny][nx]==='')){ if(board[ny][nx]===sym)cnt++; else open++; nx+=d.dx; ny+=d.dy; }
-          nx=x-d.dx; ny=y-d.dy;
-          while(nx>=0&&ny>=0&&nx<SIZE&&ny<SIZE&&(board[ny][nx]===sym||board[ny][nx]==='')){ if(board[ny][nx]===sym)cnt++; else open++; nx-=d.dx; ny-=d.dy; }
-          if(cnt>=WIN) s+=10000; else if(cnt===WIN-1 && open>0) s+=1000; else if(cnt===WIN-2 && open>=2) s+=100; else if(cnt>=2) s+=cnt*5;
-        } return s;
-      }
-
-      // Persistence
-      function saveState(){ try{ localStorage.setItem('connect5State', JSON.stringify({board,current,gameOver})) }catch{} }
-      function loadState(){ try{ const raw=localStorage.getItem('connect5State'); if(!raw) return false; const st=JSON.parse(raw); if(!st||!Array.isArray(st.board)) return false; board=st.board; current=st.current||'X'; gameOver=!!st.gameOver; updateBoard(); updateStatus(); return true; }catch{ return false; } }
-      document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') loadState(); });
-
-      // Controls
-      diffSel.addEventListener('change', restart);
-      resetBtn.addEventListener('click', restart);
-      aiStartBtn.addEventListener('click', ()=>{ botStartsNext=true; restart(); });
-      segFriend.addEventListener('click',()=>{ mode='friend'; segFriend.classList.add('active'); segAI.classList.remove('active'); restart(); });
-      segAI.addEventListener('click',()=>{ mode='computer'; segAI.classList.add('active'); segFriend.classList.remove('active'); restart(); });
-      langSel.addEventListener('change', e=>{ lang=e.target.value; localStorage.setItem('xoLanguage',lang); updateTopTexts(); });
-      soundBtn.addEventListener('click', ()=>{ soundOn=!soundOn; localStorage.setItem('xoGameSound',soundOn); updateTopTexts(); if(soundOn) playSound('MOVE'); });
-
-      function restart(){ gameOver=false; winCells=[]; moveCount=0; thinkingEl.textContent=''; showBanner('',null); forcedDrawNotified=false; likelyDrawNotified=false; createBoard(); }
-
-      // Init
-      (function initLang(){ const L=localStorage.getItem('xoLanguage'); const S=localStorage.getItem('xoGameSound'); if(L){ lang=L; langSel.value=lang; } if(S!==null) soundOn=(S==='true'); updateTopTexts(); })();
-      createBoard(); mode='computer'; segAI.classList.add('active'); segFriend.classList.remove('active'); updateStatus(); loadState();
-
-      // iOS install hint (once)
-      (function iosHintOnce(){
-        const isiOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
-        const isStandalone=window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-        const key='iosInstallHintShown';
-        if(isiOS && !isStandalone && !localStorage.getItem(key)){
-          const msg=translations[lang].iosHint || 'On iPhone: Share → Add to Home Screen';
-          setTimeout(()=>{ showToast(msg,'info',7000); showBanner(msg,'info'); setTimeout(()=>showBanner('',null),7500); }, 1200);
-          localStorage.setItem(key,'1');
-        }
-      })();
-
-      // PWA query shortcuts (optional)
-      (function handleShortcuts(){
-        const p=new URLSearchParams(location.search); let used=false;
-        if(p.get('action')==='new'){ restart(); used=true; }
-        if(p.get('ai')==='1'){ mode='computer'; segAI.classList.add('active'); segFriend.classList.remove('active'); botStartsNext=true; restart(); used=true; }
-        if(used) history.replaceState({},'',location.pathname);
-      })();
-    });
-  </script>
+  <!-- Your app logic + PWA glue -->
+  <script type="module" src="./app.js"></script>
+  <script defer src="./pwa.js"></script>
 </body>
 </html>
