@@ -1,19 +1,26 @@
-/* pwa.js — PWA glue: SW, install prompt, and iOS Add-to-Home-Screen hint */
+/* pwa.js
+   - Registers the Service Worker
+   - Handles the install button (beforeinstallprompt)
+   - Counts page views
+   - Shows iOS Add-to-Home-Screen hint AFTER a win, from the 2nd view onward
+*/
+
 (() => {
-  // --- Service Worker registration (scope works on GitHub Pages subpath) ---
+  // 1) Service Worker registration (keep this at the top)
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./service-worker.js', { scope: './' })
-        .catch(console.error);
+      navigator.serviceWorker
+        .register('./service-worker.js')
+        .catch(err => console.log('SW register failed:', err));
     });
   }
 
-  // --- Install prompt (Android/Desktop) ---
+  // 2) Install prompt + install button
   let deferredPrompt = null;
   const installBtn = document.getElementById('installBtn');
 
   window.addEventListener('beforeinstallprompt', (e) => {
-    // We’ll show our own Install button
+    // We take control so we can show our own button
     e.preventDefault();
     deferredPrompt = e;
     if (installBtn) installBtn.style.display = '';
@@ -29,104 +36,62 @@
 
   window.addEventListener('appinstalled', () => {
     if (installBtn) installBtn.style.display = 'none';
-    try { window.showToast?.('Installed!', 'success', 2200); } catch {}
   });
 
-  // --- iOS A2HS detection helpers ---
-  const UA = navigator.userAgent || navigator.vendor || '';
-  const isiOS = /iphone|ipod/i.test(UA) || ((/ipad|macintosh/i.test(UA)) && 'ontouchend' in document);
-  const isSafari = /safari/i.test(UA) && !/crios|fxios|edgios/i.test(UA); // exclude Chrome/Firefox/Edge on iOS
-  const isStandalone = () =>
-    window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  // 3) Count page views (used to gate the iOS hint)
+  try {
+    const k = 'connect5-views';
+    const n = (parseInt(localStorage.getItem(k) || '0', 10) + 1);
+    localStorage.setItem(k, String(n));
+  } catch {}
 
-  // --- Minimal CSS + modal HTML (injected dynamically) ---
-  function ensureIOSModal() {
-    if (document.getElementById('iosA2HSModal')) return;
+  // 4) iOS A2HS hint — show after a WIN, from 2nd+ page view, only once
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandalone =
+    window.matchMedia('(display-mode: standalone)').matches ||
+    window.navigator.standalone; // legacy iOS
+  const views = parseInt(localStorage.getItem('connect5-views') || '0', 10);
+  const seen  = localStorage.getItem('connect5-iosA2HSSeen') === '1';
 
-    const css = `
-      .iosa2hs{position:fixed;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.45);
-        z-index:99999;transition:opacity .2s ease}
-      .iosa2hs.hide{opacity:0;pointer-events:none}
-      .iosa2hs-card{width:min(92vw,420px);background:#fff;border-radius:14px;padding:16px 16px 12px;
-        box-shadow:0 20px 60px rgba(0,0,0,.25);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-      .iosa2hs-title{font-weight:800;font-size:1.1rem;margin-bottom:6px;color:#111827}
-      .iosa2hs-steps{display:flex;align-items:center;gap:12px;margin:12px 0;color:#111827}
-      .iosa2hs-svg{width:28px;height:28px;flex:0 0 auto}
-      .iosa2hs-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
-      .iosa2hs-btn{background:#111827;color:#fff;border:none;border-radius:10px;padding:8px 12px;
-        font-weight:700;cursor:pointer}
-      .iosa2hs-btn.secondary{background:#e5e7eb;color:#111827}
-    `;
-    const style = document.createElement('style');
-    style.textContent = css;
-    document.head.appendChild(style);
+  if (isIOS && !isStandalone && !seen && views >= 2) {
+    const lang = (localStorage.getItem('xoLanguage') || 'en');
+    const tr   = (window.translations && window.translations[lang]) || {};
 
-    const shareSVG = `
-      <svg class="iosa2hs-svg" viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="#111827" d="M12 3l3 3h-2v6h-2V6H9l3-3z"></path>
-        <rect x="4" y="12" width="16" height="8" rx="2" ry="2" fill="none" stroke="#111827" stroke-width="2"/>
-      </svg>
-    `;
+    const title  = tr.hintTitle  || 'Connect 5 — Add to Home Screen';
+    const step1  = tr.hintStep1  || '1) Tap Share';
+    const step2  = tr.hintStep2  || '2) Choose “Add to Home Screen”';
+    const footer = tr.hintFooter || 'On iPhone: tap Share, then “Add to Home Screen”.';
+    const okText = tr.gotIt      || 'Got it';
 
-    const title = (window.translations?.[window.lang]?.title) || 'Connect 5';
-    const line = (window.translations?.[window.lang]?.iosHint)
-      || 'On iPhone: tap Share, then “Add to Home Screen”.';
+    function showIOSHintModal(){
+      const backdrop = document.createElement('div');
+      backdrop.style.cssText =
+        'position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:99999;' +
+        'display:flex;align-items:center;justify-content:center;padding:16px';
+      const card = document.createElement('div');
+      card.style.cssText =
+        'max-width:420px;background:#fff;border-radius:14px;padding:16px 18px;' +
+        'box-shadow:0 10px 40px rgba(0,0,0,.25);font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#111';
+      card.innerHTML = `
+        <div style="font-weight:800;font-size:1.05rem;margin-bottom:8px">${title}</div>
+        <div style="line-height:1.45;margin-bottom:8px">${step1} • ${step2}</div>
+        <div style="opacity:.8;font-size:.95rem;margin-bottom:12px">${footer}</div>
+        <div style="display:flex;justify-content:flex-end">
+          <button id="a2hs-ok" style="background:#111827;color:#fff;border:0;border-radius:10px;padding:8px 12px;font-weight:700">${okText}</button>
+        </div>`;
+      backdrop.appendChild(card);
+      document.body.appendChild(backdrop);
+      document.getElementById('a2hs-ok').addEventListener('click', () => {
+        backdrop.remove();
+        try { localStorage.setItem('connect5-iosA2HSSeen','1'); } catch {}
+      });
+    }
 
-    const html = `
-      <div id="iosA2HSModal" class="iosa2hs hide" role="dialog" aria-modal="true" aria-label="Add to Home Screen help">
-        <div class="iosa2hs-card" role="document">
-          <div class="iosa2hs-title">${title} — Add to Home Screen</div>
-          <div class="iosa2hs-steps">
-            ${shareSVG}
-            <div style="font-weight:600;line-height:1.45">
-              1) Tap <strong>Share</strong> • 2) Choose <strong>“Add to Home Screen”</strong><br/>
-              <span style="opacity:.8">${line}</span>
-            </div>
-          </div>
-          <div class="iosa2hs-actions">
-            <button id="iosA2HSClose" class="iosa2hs-btn">Got it</button>
-          </div>
-        </div>
-      </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', html);
-    document.getElementById('iosA2HSClose')?.addEventListener('click', hideIOSModal);
+    // Show the modal only after a real game win in this session
+    window.addEventListener('connect5:win', () => {
+      if (localStorage.getItem('connect5-iosA2HSSeen') === '1') return;
+      if (!localStorage.getItem('connect5.lastWinTs')) return; // belt & suspenders
+      showIOSHintModal();
+    }, { once: true });
   }
-
-  function showIOSModal() {
-    ensureIOSModal();
-    document.getElementById('iosA2HSModal')?.classList.remove('hide');
-  }
-  function hideIOSModal() {
-    document.getElementById('iosA2HSModal')?.classList.add('hide');
-  }
-  // expose a helper so you can open it from anywhere (e.g., a “?” button)
-  window.showIOSInstallHelp = showIOSModal;
-
-  // --- Show iOS hint (toast + modal) once every 5 days ---
-  function maybeShowIOSHint() {
-    if (!isiOS || !isSafari || isStandalone()) return;
-
-    const KEY = 'iosA2HS_last';
-    const last = +localStorage.getItem(KEY) || 0;
-    const now = Date.now();
-    const FIVE_DAYS = 5 * 24 * 60 * 60 * 1000;
-    if (now - last < FIVE_DAYS) return;
-    localStorage.setItem(KEY, String(now));
-
-    const msg = (window.translations?.[window.lang]?.iosHint)
-      || 'On iPhone: tap Share → “Add to Home Screen”.';
-
-    // Use your existing helpers if present
-    try { window.showToast?.(msg, 'info', 6500); } catch {}
-    try { window.showBanner?.(msg, 'info'); } catch {}
-    setTimeout(() => { try { window.showBanner?.('', null); } catch {} }, 7000);
-
-    // Plus a small modal (dismissable)
-    setTimeout(showIOSModal, 1200);
-  }
-
-  window.addEventListener('load', () => {
-    setTimeout(maybeShowIOSHint, 800);
-  });
 })();
