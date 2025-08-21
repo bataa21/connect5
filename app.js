@@ -33,7 +33,8 @@ const translations = {
     soundOn: 'Дуутай',
     soundOff: 'Дуугүй',
     guaranteedDraw: 'Тэнцэх нь баталгаатай — Шинэ товчийг дарж дахин эхлүүлээрэй',
-    likelyDraw: 'Тэнцэх магадлал өндөр — хүсвэл Шинэ товчийг дарж дахин эхлүүлж болно'
+    likelyDraw: 'Тэнцэх магадлал өндөр — хүсвэл Шинэ товчийг дарж дахин эхлүүлж болно',
+    iosHint: 'iPhone дээр: Share → “Add to Home Screen”-г сонгоно уу.'
   },
   en: {
     title: 'Connect 5',
@@ -53,9 +54,11 @@ const translations = {
     soundOn: 'Sound On',
     soundOff: 'Sound Off',
     guaranteedDraw: 'Draw is guaranteed — press New to restart',
-    likelyDraw: 'Likely draw — you can stop and press New to restart'
+    likelyDraw: 'Likely draw — you can stop and press New to restart',
+    iosHint: 'On iPhone: tap Share → “Add to Home Screen”.'
   }
 };
+
 
 // Toast + inline pill banner
 function showToast(message, variant = 'info', ms = 2400) {
