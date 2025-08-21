@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('win-effect');}
          // Notify PWA layer that a win happened
   try { localStorage.setItem('connect5.lastWinTs', String(Date.now())); } catch {}
-  window.dispatchEvent(new CustomEvent('connect5:win', { detail: { winner: symbol } }));
+  window.dispatchEvent(new CustomEvent('connect5:win', { detail: { winner: sym } }));
  
     } else if (!forcedDrawNotified && isForcedDraw()) {
       // Strong “draw guaranteed”
@@ -673,3 +673,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (used) history.replaceState({}, '', location.pathname);
   })();
 });
+
