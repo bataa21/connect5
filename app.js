@@ -246,23 +246,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function makeMove(x, y, sym) {
-    board[y][x] = sym; moveCount++; updateBoard(); playSound('MOVE');
+  function makeMove(x, y, symbol) {
+    board[y][x] = symbol; moveCount++; updateBoard(); playSound('MOVE');
     document.querySelectorAll('.cell-last-move').forEach(n => n.classList.remove('cell-last-move'));
     const last = boardEl.children[y * SIZE + x]; if (last) last.classList.add('cell-last-move');
 
-    if (checkWin(sym)) {
+    if (checkWin(symbol)) {
       highlightWins();
       gameOver = true; thinkingEl.textContent = ''; playSound('WIN');
-      const msg = (sym === 'X') ? translations[lang].xWins : translations[lang].oWins;
+      const msg = (symbol === 'X') ? translations[lang].xWins : translations[lang].oWins;
       showToast(msg, 'success', 2600);
       showBanner(msg, 'success');
-      if (sym === 'X' && window.confetti) {
+      if (symbol === 'X' && window.confetti) {
         confetti({ particleCount: 200, spread: 70, origin: { y: .6 }, zIndex: 9999 });
         document.body.classList.add('win-effect');}
          // Notify PWA layer that a win happened
   try { localStorage.setItem('connect5.lastWinTs', String(Date.now())); } catch {}
-  window.dispatchEvent(new CustomEvent('connect5:win', { detail: { winner: sym } }));
+  window.dispatchEvent(new CustomEvent('connect5:win', { detail: { winner: symbol } }));
  
     } else if (!forcedDrawNotified && isForcedDraw()) {
       // Strong “draw guaranteed”
@@ -673,4 +673,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (used) history.replaceState({}, '', location.pathname);
   })();
 });
+
 
