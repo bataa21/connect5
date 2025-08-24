@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,6 +62,7 @@
     html,body{overflow-x:hidden;overflow-y:auto;background:linear-gradient(135deg,#f5f7fa 0%,#e4e8f0 100%)}
     body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--dark);min-height:100vh;display:flex;flex-direction:column}
     .app{width:100%;max-width:980px;margin:0 auto;padding:12px 14px 20px;display:grid;grid-template-rows:auto auto 1fr auto;gap:12px;min-height:100svh}
+    .board { overflow: visible; }
     @supports(padding:max(0px)){.app{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}}
     .topbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px}
     .topbar-left{min-width:0}
@@ -86,11 +90,20 @@
     .status{min-height:24px;text-align:center;color:#6c757d;font-style:italic;font-weight:600}
     .board{display:grid;gap:3px;background:#e9ecef;border-radius:8px;padding:5px;width:clamp(280px,92svw,520px);max-width:520px;aspect-ratio:1/1;grid-template-columns:repeat(10,minmax(0,1fr));grid-template-rows:repeat(10,minmax(0,1fr));margin-inline:auto}
     .cell{aspect-ratio:1/1;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:clamp(1.2rem,2.7vw,1.9rem);border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,.05);cursor:pointer;user-select:none;touch-action:manipulation;will-change:transform;transition:background-color .1s, box-shadow .1s}
+
+    .cell { position: relative; z-index: 0; line-height: 1; }
     .cell:active{background:#f1f3f5;box-shadow:inset 0 2px 4px rgba(0,0,0,.1)}
     @media(hover:hover){.cell:hover{transform:scale(1.03)}}
     .cell.x{color:var(--success)} .cell.o{color:var(--danger)}
     .cell.winning{background:rgba(255,215,0,.25);animation:pulse 1s infinite alternate}
-    .cell-last-move{box-shadow:0 0 0 3px var(--accent)}
+    
+    .cell-last-move {
+  position: relative;
+  z-index: 3;
+  outline: 3px solid var(--accent);
+  outline-offset: -3px;  /* draw just inside the cell */
+  box-shadow: none;
+}
     @keyframes pulse{from{background:rgba(255,215,0,.2)} to{background:rgba(255,215,0,.4)}}
     @keyframes winPulse{0%{background-color:#f5f7fa}50%{background-color:#caffd1}100%{background-color:#f5f7fa}}
     .win-effect{animation:winPulse .6s ease-in-out 8}
@@ -162,4 +175,3 @@
   <script defer src="./pwa.js"></script>
 </body>
 </html>
-
