@@ -11,7 +11,53 @@ window.addEventListener('load', () => {
 });
 
 // Sounds (optional assets in the root)
-const SOUNDS = { MOVE: 'move-sound.mp3', WIN: 'win-sound.mp3', DRAW: 'draw-sound.mp3' };
+/* ---------- SOUND: preload + mobile unlock ---------- */
+const SOUNDS = {
+  MOVE: 'move-sound.mp3',
+  WIN:  'win-sound.mp3',
+  DRAW: 'draw-sound.mp3'
+};
+
+// Preload a single Audio instance per sound (lower latency)
+const audioBank = {
+  MOVE: new Audio(SOUNDS.MOVE),
+  WIN:  new Audio(SOUNDS.WIN),
+  DRAW: new Audio(SOUNDS.DRAW)
+};
+Object.values(audioBank).forEach(a => { a.preload = 'auto'; a.volume = 0.35; });
+
+// Will flip to true after the first user gesture
+let audioUnlocked = false;
+
+// Call once after a user gesture to make audio playable on mobile
+function unlockAudioOnce() {
+  if (audioUnlocked) return;
+  audioUnlocked = true;
+
+  // Prime each sound: play at volume 0, then pause immediately.
+  Object.values(audioBank).forEach(a => {
+    try {
+      const prevVol = a.volume;
+      a.volume = 0;
+      const p = a.play();
+      if (p && p.then) {
+        p.then(() => { a.pause(); a.currentTime = 0; a.volume = prevVol; })
+         .catch(() => { /* ignore */ });
+      } else {
+        a.pause(); a.currentTime = 0; a.volume = prevVol;
+      }
+    } catch { /* ignore */ }
+  });
+}
+
+// Use any of these to unlock. Keep { once: true } to run only the first time.
+window.addEventListener('pointerdown', unlockAudioOnce, { once: true });
+window.addEventListener('keydown',      unlockAudioOnce, { once: true });
+
+// If the user taps the sound button first, unlock as well.
+soundBtn?.addEventListener('click', () => {
+  unlockAudioOnce();
+});
 
 // i18n
 const translations = {
@@ -175,20 +221,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ======= Sound =======
-  function playSound(k) {
-    if (!soundOn || !SOUNDS[k]) return;
-    try {
-      const a = new Audio(SOUNDS[k]);
-      a.volume = 0.3;
-      a.play().catch(() => {
-        soundOn = false;
-        updateTopTexts();
-      });
-    } catch {
-      soundOn = false;
-      updateTopTexts();
-    }
-  }
+ function playSound(kind) {
+  if (!soundOn || !audioUnlocked) return;           // gate until user gesture
+  const a = audioBank[kind];
+  if (!a) return;
+  try {
+    a.currentTime = 0;
+    a.play().catch(() => { /* don’t flip soundOff here */ });
+  } catch { /* ignore */ }
+}
 
   // ======= Board =======
   function createBoard() {
@@ -673,6 +714,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (used) history.replaceState({}, '', location.pathname);
   })();
 });
+
 
 
 
