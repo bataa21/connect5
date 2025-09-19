@@ -1,5 +1,4 @@
-// service-worker.js
-const CACHE_NAME = 'connect5-v5'; // bump when assets change
+const CACHE_NAME = 'connect5-v6'; // bump when assets change
 const ASSETS = [
   './',
   './index.html',
@@ -73,6 +72,3 @@ self.addEventListener('fetch', (event) => {
     );
   }
 });
-
-
-
