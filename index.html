@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,11 +49,10 @@
   <link rel="apple-touch-startup-image" href="splash/ipad-1536x2048.png"
         media="(device-width:768px) and (device-height:1024px) and (-webkit-device-pixel-ratio:2) and (orientation:portrait)">
 
-  <!-- Confetti (safe to load deferred) -->
+  <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 
   <style>
-    /* ——— your CSS exactly as you shared ——— */
     :root{--primary:#4361ee;--secondary:#3a0ca3;--accent:#f72585;--dark:#212529;--light:#fff;--success:#4cc9f0;--danger:#f72585;--radius:12px;--shadow:0 4px 20px rgba(0,0,0,.08)}
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{overflow-x:hidden;overflow-y:auto;background:linear-gradient(135deg,#f5f7fa 0%,#e4e8f0 100%)}
@@ -90,20 +86,12 @@
     .status{min-height:24px;text-align:center;color:#6c757d;font-style:italic;font-weight:600}
     .board{display:grid;gap:3px;background:#e9ecef;border-radius:8px;padding:5px;width:clamp(280px,92svw,520px);max-width:520px;aspect-ratio:1/1;grid-template-columns:repeat(10,minmax(0,1fr));grid-template-rows:repeat(10,minmax(0,1fr));margin-inline:auto}
     .cell{aspect-ratio:1/1;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:clamp(1.2rem,2.7vw,1.9rem);border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,.05);cursor:pointer;user-select:none;touch-action:manipulation;will-change:transform;transition:background-color .1s, box-shadow .1s}
-
     .cell { position: relative; z-index: 0; line-height: 1; }
     .cell:active{background:#f1f3f5;box-shadow:inset 0 2px 4px rgba(0,0,0,.1)}
     @media(hover:hover){.cell:hover{transform:scale(1.03)}}
     .cell.x{color:var(--success)} .cell.o{color:var(--danger)}
     .cell.winning{background:rgba(255,215,0,.25);animation:pulse 1s infinite alternate}
-    
-    .cell-last-move {
-  position: relative;
-  z-index: 3;
-  outline: 3px solid var(--accent);
-  outline-offset: -3px;  /* draw just inside the cell */
-  box-shadow: none;
-}
+    .cell-last-move{position:relative;z-index:3;outline:3px solid var(--accent);outline-offset:-3px;box-shadow:none}
     @keyframes pulse{from{background:rgba(255,215,0,.2)} to{background:rgba(255,215,0,.4)}}
     @keyframes winPulse{0%{background-color:#f5f7fa}50%{background-color:#caffd1}100%{background-color:#f5f7fa}}
     .win-effect{animation:winPulse .6s ease-in-out 8}
@@ -121,7 +109,7 @@
     <div class="welcome-box" style="text-align:center;background:rgba(255,255,255,.1);padding:28px;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,.3)">
       <h1 style="font-size:2rem;margin-bottom:10px;">Connect 5</h1>
       <h2 style="font-size:1.6rem;margin-bottom:12px;">5-ыг холбо</h2>
-      <p style="opacity:.9;margin-bottom:16px;">Get XXXXX in a row to win!</p>
+      <p style="opacity:.9;margin-bottom:16px;">Get five in a row to win!</p>
       <button class="btn" onclick="hideWelcomeScreen()">Start</button>
     </div>
   </div>
@@ -170,8 +158,8 @@
     <div id="toastHost" class="toast-container" aria-live="polite" aria-atomic="true"></div>
   </div>
 
-  <!-- Your app logic + PWA glue -->
-  <script type="module" src="./app.js"></script>
-  <script defer src="./pwa.js"></script>
+  <!-- App + PWA (versioned to bust SW cache) -->
+  <script type="module" src="./app.js?v=6"></script>
+  <script defer src="./pwa.js?v=6"></script>
 </body>
 </html>
