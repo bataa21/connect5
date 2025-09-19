@@ -1,26 +1,24 @@
 /* pwa.js
-   - Registers the Service Worker
-   - Handles the install button (beforeinstallprompt)
-   - Counts page views
-   - Shows iOS Add-to-Home-Screen hint AFTER a win, from the 2nd view onward
+   - Service Worker registration
+   - Install button (beforeinstallprompt)
+   - Page view counter
+   - iOS Add-to-Home-Screen hint AFTER a win & from 2nd view+
 */
-
 (() => {
-  // 1) Service Worker registration (keep this at the top)
+  // 1) Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker
-        .register('./service-worker.js')
+        .register('./service-worker.js?v=6')
         .catch(err => console.log('SW register failed:', err));
     });
   }
 
-  // 2) Install prompt + install button
+  // 2) Install prompt
   let deferredPrompt = null;
   const installBtn = document.getElementById('installBtn');
 
   window.addEventListener('beforeinstallprompt', (e) => {
-    // We take control so we can show our own button
     e.preventDefault();
     deferredPrompt = e;
     if (installBtn) installBtn.style.display = '';
@@ -38,25 +36,25 @@
     if (installBtn) installBtn.style.display = 'none';
   });
 
-  // 3) Count page views (used to gate the iOS hint)
+  // 3) Count views
   try {
     const k = 'connect5-views';
     const n = (parseInt(localStorage.getItem(k) || '0', 10) + 1);
     localStorage.setItem(k, String(n));
   } catch {}
 
-  // 4) iOS A2HS hint — show after a WIN, from 2nd+ page view, only once
+  // 4) iOS hint after a WIN, on 2nd+ view, once
   const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
   const isStandalone =
     window.matchMedia('(display-mode: standalone)').matches ||
-    window.navigator.standalone; // legacy iOS
+    window.navigator.standalone;
+
   const views = parseInt(localStorage.getItem('connect5-views') || '0', 10);
   const seen  = localStorage.getItem('connect5-iosA2HSSeen') === '1';
 
   if (isIOS && !isStandalone && !seen && views >= 2) {
     const lang = (localStorage.getItem('xoLanguage') || 'en');
-    const tr   = (window.translations && window.translations[lang]) || {};
-
+    const tr = (window.translations && window.translations[lang]) || {};
     const title  = tr.hintTitle  || 'Connect 5 — Add to Home Screen';
     const step1  = tr.hintStep1  || '1) Tap Share';
     const step2  = tr.hintStep2  || '2) Choose “Add to Home Screen”';
@@ -87,10 +85,9 @@
       });
     }
 
-    // Show the modal only after a real game win in this session
     window.addEventListener('connect5:win', () => {
       if (localStorage.getItem('connect5-iosA2HSSeen') === '1') return;
-      if (!localStorage.getItem('connect5.lastWinTs')) return; // belt & suspenders
+      if (!localStorage.getItem('connect5.lastWinTs')) return;
       showIOSHintModal();
     }, { once: true });
   }
